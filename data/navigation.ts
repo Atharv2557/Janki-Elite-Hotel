@@ -1,30 +1,9 @@
-export const navigation = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "Rooms",
-    href: "/rooms",
-  },
-  {
-    label: "Gallery",
-    href: "/gallery",
-  },
-  {
-    label: "Dining",
-    href: "/dining",
-  },
-  {
-    label: "Amenities",
-    href: "/amenities",
-  },
-  {
-    label: "About",
-    href: "/about",
-  },
-  {
-    label: "Contact",
-    href: "/contact",
-  },
+export const navigationLinks = [
+  { label: "Home", href: "/" },
+  { label: "Rooms", href: "/rooms" },
+  { label: "Amenities", href: "/amenities" },
+  { label: "Dining", href: "/dining" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];

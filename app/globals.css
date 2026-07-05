@@ -1,32 +1,9 @@
 @import "tailwindcss";
-@source "../components/**/*.{js,ts,jsx,tsx,mdx}";
-@source "../app/**/*.{js,ts,jsx,tsx,mdx}";
 @import "../styles/theme.css";
 @import "../styles/animations.css";
 @import "../styles/utilities.css";
 
-:root {
-  /* Brand Colors */
-  --background: #faf7f2;
-  --foreground: #232323;
-
-  --primary: #b08d57;
-  --secondary: #3d2b1f;
-
-  --ivory: #faf7f2;
-  --warm-white: #f5f1ea;
-  --beige: #d8c3a5;
-  --charcoal: #232323;
-  --gold: #b08d57;
-
-  /* Layout */
-  --container-width: 1280px;
-  --section-spacing: 6rem;
-}
-
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
@@ -35,9 +12,10 @@ html {
 }
 
 body {
+  margin: 0;
   background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-body), sans-serif;
+  color: var(--text-primary);
+  font-family: var(--font-body);
   overflow-x: hidden;
 }
 
@@ -47,15 +25,13 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading), serif;
-}
-
-img {
-  display: block;
-  max-width: 100%;
+  font-family: var(--font-heading);
 }
 
 a {
   text-decoration: none;
-  color: inherit;
+}
+
+img {
+  max-width: 100%;
 }

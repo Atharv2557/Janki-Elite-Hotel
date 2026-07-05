@@ -1,31 +1,39 @@
 type Props = {
-  eyebrow?: string;
-  title: string;
-  subtitle?: string;
+  line1: string;
+  line2?: string;
+  align?: "left" | "center";
+  light?: boolean;
 };
 
 export default function SectionHeading({
-  eyebrow,
-  title,
-  subtitle,
+  line1,
+  line2,
+  align = "left",
+  light = false,
 }: Props) {
   return (
-    <div className="max-w-3xl">
-      {eyebrow && (
-        <p className="mb-4 uppercase tracking-[0.3em] text-sm text-[var(--primary)]">
-          {eyebrow}
-        </p>
-      )}
+    <h2
+      className={`
+        mt-6
+        text-4xl
+        font-semibold
+        leading-tight
+        md:text-5xl
+        lg:text-6xl
+        ${align === "center" ? "text-center" : "text-left"}
+        ${light ? "text-white" : "text-gray-900"}
+      `}
+    >
+      {line1}
 
-      <h2 className="text-4xl ml- md:text-5xl font-semibold">
-        {title}
-      </h2>
-
-      {subtitle && (
-        <p className="mt-6 text-lg text-gray-600">
-          {subtitle}
-        </p>
+      {line2 && (
+        <>
+          <br />
+          <span className="text-[var(--primary)]">
+            {line2}
+          </span>
+        </>
       )}
-    </div>
+    </h2>
   );
 }

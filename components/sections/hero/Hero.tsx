@@ -5,7 +5,7 @@ import HeroFeatures from "./HeroFeatures";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen overflow-hidden">
+    <section className="relative min-h-screen overflow-hidden bg-[#211711] text-white">
       <HeroBackground />
       <HeroOverlay />
       <HeroContent />

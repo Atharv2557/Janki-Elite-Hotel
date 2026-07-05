@@ -17,7 +17,7 @@ export const rooms = [
 
     area: "320 sq.ft",
 
-    featured: true,
+    // featured: true,
   },
 
   {
@@ -38,7 +38,7 @@ export const rooms = [
 
     area: "420 sq.ft",
 
-    featured: true,
+    // featured: true,
   },
 
   {

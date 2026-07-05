@@ -1,91 +1,71 @@
 "use client";
+
 import { motion } from "framer-motion";
-import {
-  fadeUp,
-  staggerContainer,
-} from "@/lib/animations/hero";
+
+import Container from "@/components/ui/Container";
+import Badge from "@/components/ui/badge/Badge";
 
 import { heroContent } from "@/data/hero";
-import Container from "@/components/ui/Container";
+import {
+  heroContentContainer,
+  heroFadeUp,
+} from "@/lib/animations/hero";
+
 import HeroButtons from "./HeroButtons";
 
 export default function HeroContent() {
   return (
+   <Container>
+  <div className="relative z-20 flex min-h-screen items-center px-0 pb-44 pt-32 sm:pt-36 lg:pb-40">
+        <motion.div
+          variants={heroContentContainer}
+          initial="hidden"
+          animate="visible"
+          className="max-w-3xl"
+        >
+          <motion.div variants={heroFadeUp}>
+            <Badge light>{heroContent.badge}</Badge>
+          </motion.div>
 
-    <motion.div
-  variants={staggerContainer}
-  initial="hidden"
-  animate="visible"
->
-    <Container>
-      <div className="relative z-20 flex min-h-screen items-center">
-        <div className="max-w-2xl">
+          <motion.h1
+            variants={heroFadeUp}
+        className="
+  mt-8
+  max-w-4xl
+  text-5xl
+  font-semibold
+  leading-tight
+  text-white
+  md:text-6xl
+  lg:text-7xl
+"
+          >
+            {heroContent.title.line1}
+            <br />
+            <span className="italic text-[var(--primary)]">
+              {heroContent.title.line2}
+            </span>
+          </motion.h1>
 
-          {/* Badge */}
+          <motion.p
+            variants={heroFadeUp}
+            className="
+              mt-8
+              max-w-2xl
+              text-lg
+              leading-8
+              text-white/75
+              md:text-xl
+            "
+          >
+            {heroContent.subtitle}
+          </motion.p>
 
-<motion.span
-  variants={fadeUp}
-  className="
-    inline-flex
-    items-center
-    rounded-full
-    border
-    border-white/20
-    bg-white/10
-    backdrop-blur-md
-    px-5
-    py-2
-    text-xs
-    uppercase
-    tracking-[0.25em]
-    text-[var(--primary)]
-  "
->
-  {heroContent.badge}
-</motion.span>
-
-          {/* Heading */}
-
-       <motion.h1
-  variants={fadeUp}
-  className="
-    mt-8
-    text-5xl
-    font-semibold
-    leading-tight
-    text-white
-    md:text-6xl
-    lg:text-7xl
-  "
->
-  {heroContent.title.line1}
-  <br />
-  {heroContent.title.line2}
-</motion.h1>
-
-          {/* Subtitle */}
-
-        <motion.p
-  variants={fadeUp}
-  className="
-    mt-8
-    max-w-xl
-    text-lg
-    leading-8
-    text-white/80
-  "
->
-  {heroContent.subtitle}
-</motion.p>
-          {/* CTA */}
-
-         <motion.div variants={fadeUp}>
-  <HeroButtons />
-</motion.div>
-
-        </div>
+          <motion.div variants={heroFadeUp}>
+            <HeroButtons />
+          </motion.div>
+        </motion.div>
       </div>
     </Container>
-    </motion.div>
   );
 }

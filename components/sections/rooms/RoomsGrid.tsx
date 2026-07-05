@@ -14,7 +14,7 @@ export default function RoomsGrid() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
-      className="grid gap-8 md:grid-cols-2 xl:grid-cols-3"
+      className="grid gap-6 sm:gap-8 lg:grid-cols-3"
     >
       {rooms.map((room) => (
         <RoomCard key={room.id} room={room} />
