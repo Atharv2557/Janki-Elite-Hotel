@@ -2,21 +2,21 @@ export const testimonials = {
   badge: "Guest Reviews",
 
   title: {
-    line1: "What Our Guests",
-    line2: "Say About Us",
+    line1: "What Our",
+    line2: "Guests Say",
   },
 
   description:
-    "Real experiences from guests who enjoyed comfort, hospitality, dining, and memorable stays at Janki Elite.",
+    "Hear from guests who experienced our warm hospitality, elegant rooms, and comfortable stays at Janki Elite.",
 
   reviews: [
     {
       id: 1,
-      name: "Aarav Sharma",
+      name: "Amit Sharma",
       location: "Jaipur, Rajasthan",
       rating: 5,
       review:
-        "A wonderful stay with clean rooms, polite staff, and excellent service. The ambience felt premium and peaceful.",
+        "The rooms were clean, comfortable, and beautifully designed. The staff was very helpful throughout our stay.",
     },
     {
       id: 2,
@@ -24,7 +24,7 @@ export const testimonials = {
       location: "Delhi, India",
       rating: 5,
       review:
-        "The room was spacious, comfortable, and beautifully maintained. Dining was also very good. Highly recommended for families.",
+        "A wonderful hotel experience with great hospitality, peaceful ambience, and excellent food.",
     },
     {
       id: 3,
@@ -32,7 +32,31 @@ export const testimonials = {
       location: "Mumbai, India",
       rating: 4,
       review:
-        "Great hospitality and smooth experience from check-in to check-out. Perfect place for both business and leisure stays.",
+        "Perfect location, premium rooms, and smooth service. I would definitely recommend Janki Elite.",
+    },
+    {
+      id: 4,
+      name: "Neha Kapoor",
+      location: "Ahmedabad, India",
+      rating: 5,
+      review:
+        "The ambience was elegant and the staff made us feel welcome from the moment we arrived.",
+    },
+    {
+      id: 5,
+      name: "Saurabh Jain",
+      location: "Kota, Rajasthan",
+      rating: 5,
+      review:
+        "Clean rooms, good food, and a peaceful stay. The overall experience felt premium and comfortable.",
+    },
+    {
+      id: 6,
+      name: "Ananya Singh",
+      location: "Gurugram, India",
+      rating: 5,
+      review:
+        "Loved the interiors and hospitality. Everything felt thoughtfully arranged for a relaxed stay.",
     },
   ],
 };

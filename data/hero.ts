@@ -1,5 +1,5 @@
 export const heroContent = {
-  badge: "★★★★★ LUXURY HOTEL IN JAIPUR",
+  badge: "★★ LUXURY HOTEL IN JAIPUR ★★",
 
   title: {
     line1: "Experience Jaipur",

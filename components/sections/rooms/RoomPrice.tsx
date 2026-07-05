@@ -14,7 +14,7 @@ export default function RoomPrice({ room }: RoomPriceProps) {
         </p>
 
         <div className="mt-2 flex items-end gap-1">
-          <span className="text-3xl font-semibold text-[#211711]">
+          <span className="text-3xl  text-[#211711]">
             ₹{room.price.toLocaleString("en-IN")}
           </span>
 
@@ -26,7 +26,7 @@ export default function RoomPrice({ room }: RoomPriceProps) {
 
       <Button
         href="/contact"
-        variant="dark"
+        variant="primary"
         className="w-full px-6 py-3 sm:w-auto"
       >
         Book Now

@@ -1,86 +1,116 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { Eye } from "lucide-react";
+import { motion } from "framer-motion";
 
 import { galleryCardReveal } from "@/lib/animations/gallery";
 import type { GalleryImage } from "./types";
 
-type Props = {
+type GalleryCardProps = {
   image: GalleryImage;
-  large?: boolean;
 };
 
-export default function GalleryCard({ image, large = false }: Props) {
+export default function GalleryCard({ image }: GalleryCardProps) {
   return (
     <motion.article
       variants={galleryCardReveal}
-      className={`
+      className="
         group
         relative
+        h-[300px]
         overflow-hidden
-        rounded-[28px]
-        shadow-lg
-        ${large ? "md:col-span-2 md:row-span-2" : ""}
-      `}
+        rounded-[30px]
+        border
+        border-black/5
+        bg-black
+        shadow-[0_18px_50px_rgba(0,0,0,0.08)]
+        transition-all
+        duration-500
+        hover:-translate-y-2
+        hover:shadow-[0_30px_80px_rgba(0,0,0,0.14)]
+        sm:h-[340px]
+        lg:h-[380px]
+      "
     >
-      <div className={large ? "relative h-[520px]" : "relative h-[250px]"}>
-        <Image
-          src={image.src}
-          alt={image.alt}
-          fill
-          sizes={
-            large
-              ? "(max-width: 768px) 100vw, 66vw"
-              : "(max-width: 768px) 100vw, 33vw"
-          }
-          className="
-            object-cover
-            transition-transform
-            duration-[3000ms]
-            ease-out
-            group-hover:scale-[1.04]
-          "
-        />
+      <Image
+        src={image.src}
+        alt={image.alt}
+        fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        className="
+          object-cover
+          transition-transform
+          duration-[1700ms]
+          ease-out
+          group-hover:scale-110
+        "
+      />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-95" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-90" />
 
+      <div
+        className="
+          absolute
+          left-5
+          top-5
+          rounded-full
+          border
+          border-white/20
+          bg-white/12
+          px-4
+          py-2
+          text-[11px]
+          font-semibold
+          uppercase
+          tracking-[0.22em]
+          text-white
+          backdrop-blur-md
+        "
+      >
+        {image.category}
+      </div>
+
+      <div
+        className="
+          absolute
+          inset-0
+          flex
+          items-center
+          justify-center
+          opacity-0
+          transition-opacity
+          duration-500
+          group-hover:opacity-100
+        "
+      >
         <div
           className="
-            absolute
-            right-5
-            top-5
             flex
-            h-11
-            w-11
-            translate-y-2
+            h-14
+            w-14
             items-center
             justify-center
             rounded-full
+            border
+            border-white/20
             bg-white/15
             text-white
-            opacity-0
-            backdrop-blur-md
-            transition-all
-            duration-500
-            group-hover:translate-y-0
-            group-hover:opacity-100
+            backdrop-blur-xl
           "
-          aria-hidden="true"
         >
-          <Eye size={18} />
+          <Eye size={22} />
         </div>
+      </div>
 
-        <div className="absolute bottom-6 left-6 right-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-[var(--primary)]">
-            {image.category}
-          </p>
+      <div className="absolute bottom-5 left-5 right-5">
+        <p className="text-sm font-medium uppercase tracking-[0.24em] text-white/70">
+          Janki Elite
+        </p>
 
-          <h3 className="mt-2 max-h-[68px] overflow-hidden text-2xl font-semibold text-white">
-            {image.alt}
-          </h3>
-        </div>
+        <h3 className="mt-2 text-2xl font-semibold leading-tight text-white">
+          {image.alt}
+        </h3>
       </div>
     </motion.article>
   );

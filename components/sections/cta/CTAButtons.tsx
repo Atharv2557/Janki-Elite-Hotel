@@ -6,8 +6,11 @@ import Button from "@/components/ui/Button";
 
 export default function CTAButtons() {
   return (
-    <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-      <Button href={cta.primaryButton.href}>
+    <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:mt-10 sm:flex-row">
+      <Button
+        href={cta.primaryButton.href}
+        className="w-full sm:w-auto"
+      >
         {cta.primaryButton.text}
       </Button>
 
@@ -18,6 +21,7 @@ export default function CTAButtons() {
         aria-label="Open WhatsApp inquiry for Janki Elite"
         className="
           inline-flex
+          w-full
           items-center
           justify-center
           gap-2
@@ -30,13 +34,14 @@ export default function CTAButtons() {
           font-medium
           text-white
           transition-all
-          duration-300
+          duration-500
           hover:-translate-y-1
           hover:bg-white
           hover:text-black
           focus:outline-none
           focus:ring-2
           focus:ring-white/50
+          sm:w-auto
         "
       >
         <MessageCircle size={18} />

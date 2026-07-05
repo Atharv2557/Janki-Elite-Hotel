@@ -13,15 +13,18 @@ export default function GalleryGrid() {
       variants={galleryContainer}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.15 }}
-      className="grid auto-rows-auto gap-6 md:grid-cols-2 xl:grid-cols-4"
+      viewport={{ once: true, amount: 0.2 }}
+      className="
+        grid
+        gap-5
+        sm:grid-cols-2
+        sm:gap-6
+        lg:grid-cols-3
+        lg:gap-8
+      "
     >
-      {gallery.images.map((image, index) => (
-        <GalleryCard
-          key={image.id}
-          image={image}
-          large={index === 0}
-        />
+      {gallery.images.slice(0, 6).map((image) => (
+        <GalleryCard key={image.id} image={image} />
       ))}
     </motion.div>
   );

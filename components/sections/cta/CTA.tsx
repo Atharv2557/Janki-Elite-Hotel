@@ -10,7 +10,7 @@ import CTAContent from "./CTAContent";
 
 export default function CTA() {
   return (
-    <Section className="bg-white">
+    <Section className="bg-[var(--background)] pb-16 sm:pb-20 lg:pb-24">
       <Container>
         <motion.div
           variants={ctaCardReveal}
@@ -20,21 +20,23 @@ export default function CTA() {
           className="
             relative
             overflow-hidden
-            rounded-[40px]
-            bg-[#2f2118]
+            rounded-[34px]
+            bg-[#211711]
             px-6
-            py-20
+            py-16
             text-center
-            shadow-2xl
-            md:px-12
+            shadow-[0_28px_90px_rgba(0,0,0,0.18)]
+            sm:rounded-[40px]
+            sm:px-10
+            sm:py-20
+            lg:px-16
             lg:py-28
           "
         >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(176,141,87,0.28),transparent_35%)]" />
-
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.08),transparent_35%)]" />
-
-          <div className="absolute -left-20 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-[var(--primary)]/20 blur-3xl" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(176,141,87,0.28),transparent_34%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.09),transparent_34%)]" />
+          <div className="absolute -left-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full bg-[var(--primary)]/20 blur-3xl" />
+          <div className="absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
 
           <CTAContent />
         </motion.div>

@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 
 import Badge from "@/components/ui/badge/Badge";
-import SectionHeading from "@/components/ui/heading/SectionHeading";
 import Button from "@/components/ui/Button";
 
 import { location } from "@/data/location";
@@ -20,22 +19,34 @@ export default function LocationContent() {
       variants={locationContentContainer}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.25 }}
+      viewport={{ once: true, amount: 0.3 }}
     >
       <motion.div variants={locationFadeUp}>
         <Badge>{location.badge}</Badge>
       </motion.div>
 
-      <motion.div variants={locationFadeUp}>
-        <SectionHeading
-          line1={location.title.line1}
-          line2={location.title.line2}
-        />
-      </motion.div>
+      <motion.h2
+        variants={locationFadeUp}
+        className="
+          mt-6
+          text-4xl
+          font-semibold
+          leading-tight
+          text-[#211711]
+          sm:text-5xl
+          lg:text-6xl
+        "
+      >
+        {location.title.line1}
+        <br />
+        <span className="text-[var(--primary)]">
+          {location.title.line2}
+        </span>
+      </motion.h2>
 
       <motion.p
         variants={locationFadeUp}
-        className="mt-8 max-w-xl text-lg leading-8 text-gray-600"
+        className="mt-6 max-w-xl text-base leading-8 text-black/60 sm:mt-8 sm:text-lg"
       >
         {location.description}
       </motion.p>
@@ -44,8 +55,11 @@ export default function LocationContent() {
         <LocationInfo />
       </motion.div>
 
-      <motion.div variants={locationFadeUp} className="mt-10">
-        <Button href={location.button.href}>
+      <motion.div variants={locationFadeUp} className="mt-9">
+        <Button
+          href={location.button.href}
+          variant="dark"
+        >
           {location.button.text}
         </Button>
       </motion.div>

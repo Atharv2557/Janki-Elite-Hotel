@@ -1,48 +1,62 @@
+import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
+
 import { location } from "@/data/location";
 
 export default function LocationInfo() {
-  const items = [
+  const infoItems = [
     {
       icon: MapPin,
       label: "Address",
       value: location.address,
+      href: location.button.href,
+      external: true,
     },
     {
       icon: Phone,
       label: "Phone",
       value: location.phone,
+      href: `tel:${location.phone.replace(/\s/g, "")}`,
+      external: false,
     },
     {
       icon: Mail,
       label: "Email",
       value: location.email,
+      href: `mailto:${location.email}`,
+      external: false,
     },
   ];
 
   return (
-    <div className="mt-10 grid gap-5">
-      {items.map((item) => {
+    <div className="mt-8 grid gap-4 sm:mt-10">
+      {infoItems.map((item) => {
         const Icon = item.icon;
 
         return (
-          <div
+          <Link
             key={item.label}
+            href={item.href}
+            target={item.external ? "_blank" : undefined}
+            rel={item.external ? "noopener noreferrer" : undefined}
             className="
               group
               flex
               gap-4
-              rounded-2xl
-              bg-white
+              rounded-[24px]
+              border
+              border-black/5
+              bg-[var(--background)]
               p-5
-              shadow-sm
+              shadow-[0_12px_35px_rgba(0,0,0,0.04)]
               transition-all
               duration-500
               hover:-translate-y-1
-              hover:shadow-xl
+              hover:bg-white
+              hover:shadow-[0_20px_55px_rgba(0,0,0,0.08)]
             "
           >
-            <div
+            <span
               className="
                 flex
                 h-12
@@ -50,7 +64,7 @@ export default function LocationInfo() {
                 shrink-0
                 items-center
                 justify-center
-                rounded-xl
+                rounded-2xl
                 bg-[var(--primary)]/10
                 text-[var(--primary)]
                 transition-all
@@ -59,19 +73,19 @@ export default function LocationInfo() {
                 group-hover:text-white
               "
             >
-              <Icon size={22} />
-            </div>
+              <Icon size={22} strokeWidth={1.8} />
+            </span>
 
-            <div>
-              <p className="text-sm uppercase tracking-[0.2em] text-gray-400">
+            <span>
+              <span className="block text-xs font-semibold uppercase tracking-[0.24em] text-black/40">
                 {item.label}
-              </p>
+              </span>
 
-              <p className="mt-1 text-gray-700">
+              <span className="mt-2 block text-base leading-7 text-[#211711]">
                 {item.value}
-              </p>
-            </div>
-          </div>
+              </span>
+            </span>
+          </Link>
         );
       })}
     </div>

@@ -1,23 +1,20 @@
-import Section from "@/components/ui/Section";
 import Container from "@/components/ui/Container";
+import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
-
-import { gallery } from "@/data/gallery";
 
 import GalleryHeader from "./GalleryHeader";
 import GalleryGrid from "./GalleryGrid";
 
 export default function Gallery() {
   return (
-    <Section className="bg-[#f8f5ef]">
+    <Section className="bg-white">
       <Container>
         <GalleryHeader />
-
         <GalleryGrid />
 
-        <div className="mt-16 flex justify-center">
-          <Button href={gallery.button.href}>
-            {gallery.button.text}
+        <div className="mt-14 flex justify-center sm:mt-16">
+          <Button href="/gallery" variant="dark">
+            View Full Gallery
           </Button>
         </div>
       </Container>

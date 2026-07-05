@@ -10,7 +10,7 @@ export default function Section({ children, className }: SectionProps) {
   return (
     <section
       className={cn(
-        "relative overflow-hidden py-20 sm:py-24 lg:py-32",
+        "relative overflow-hidden py-2 sm:py-8 lg:py-10",
         className
       )}
     >

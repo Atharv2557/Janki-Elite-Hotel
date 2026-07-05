@@ -13,10 +13,14 @@ export default function Footer() {
         <div
           className="
             grid
-            gap-12
-            py-20
+            gap-10
+            py-14
             sm:grid-cols-2
+            sm:gap-12
+            sm:py-16
             lg:grid-cols-[1.5fr_1fr_1.2fr_1fr]
+            lg:gap-14
+            lg:py-20
           "
         >
           <FooterBrand />
