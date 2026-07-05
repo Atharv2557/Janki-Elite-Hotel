@@ -42,7 +42,7 @@ export default function HeroContent() {
           >
             {heroContent.title.line1}
             <br />
-            <span className="italic text-[var(--primary)]">
+            <span className="italic text-(--primary)">
               {heroContent.title.line2}
             </span>
           </motion.h1>
