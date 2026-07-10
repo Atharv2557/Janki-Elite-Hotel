@@ -92,6 +92,28 @@ export default function MobileMenu({ scrolled = false }: MobileMenuProps) {
           >
             Book Now
           </Link>
+          <Link
+              href="/login"
+              onClick={() => setOpen(false)}
+              className="
+                mt-4
+                inline-flex
+                w-full
+                items-center
+                justify-center
+                rounded-full
+                bg-[var(--primary)]
+                px-6
+                py-4
+                text-sm
+                font-medium
+                uppercase
+                tracking-[0.2em]
+                text-white
+              "
+                >
+                  Login
+                </Link>
         </div>
       )}
     </div>
