@@ -19,9 +19,9 @@ export default function TestimonialsMarquee() {
       <div className="flex w-max animate-testimonial-marquee gap-5 px-5 sm:gap-6 sm:px-6 lg:gap-8 lg:px-8">
         {repeatedTestimonials.map((review, index) => (
           <TestimonialCard
-            key={`${review.name}-${index}`}
-            review={review}
-          />
+  key={`${review.name}-${index}`}
+  testimonial={review}
+/>
         ))}
       </div>
     </div>
