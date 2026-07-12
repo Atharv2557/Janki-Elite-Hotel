@@ -2,6 +2,9 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+
+import { ExternalLink } from "lucide-react";
+
 import { createClient } from "@/lib/supabase/server";
 import AdminLogoutButton from "@/components/admin/AdminLogoutButton";
 
@@ -51,7 +54,7 @@ export default async function AdminLayout({
       {/* Top admin navigation */}
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0b0b0b]/95 backdrop-blur-xl">
         <div className="mx-auto flex min-h-20 w-full max-w-[1500px] items-center justify-between gap-6 px-5 sm:px-8">
-          <div className="flex min-w-0 items-center gap-18">
+          <div className="flex min-w-0 items-center gap-8">
             <Link
               href="/admin"
               className="shrink-0 text-xl font-semibold tracking-wide text-white"
@@ -59,7 +62,7 @@ export default async function AdminLayout({
               Janki Elite Admin
             </Link>
 
-            <nav className="hidden  items-center gap-11 lg:flex">
+            <nav className="hidden  items-center gap-5 lg:flex">
               {adminLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -88,6 +91,16 @@ export default async function AdminLayout({
                 {user.email}
               </p>
             </div>
+
+            <Link
+  href="/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center gap-2 rounded-xl border border-[#b9945a]/30 bg-[#b9945a]/10 px-4 py-2 text-sm font-medium text-[#c7a46d] transition hover:bg-[#b9945a] hover:text-[#111111]"
+>
+  <ExternalLink size={16} />
+  View Website
+</Link>
 
             <div className="w-[130px]">
               <AdminLogoutButton />
