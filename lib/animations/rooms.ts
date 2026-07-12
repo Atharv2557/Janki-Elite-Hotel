@@ -1,4 +1,6 @@
-export const roomsContainer = {
+import type { Variants } from "framer-motion";
+
+export const roomsContainer: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -7,7 +9,7 @@ export const roomsContainer = {
   },
 };
 
-export const roomCardReveal = {
+export const roomCardReveal: Variants = {
   hidden: {
     opacity: 0,
     y: 40,
@@ -17,7 +19,7 @@ export const roomCardReveal = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: "easeOut",
+      ease: [0.22, 1, 0.36, 1],
     },
   },
 };
