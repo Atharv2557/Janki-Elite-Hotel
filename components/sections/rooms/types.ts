@@ -7,5 +7,5 @@ export interface Room {
   guests: number;
   beds: number;
   area: string;
-  featured: boolean;
+  featured?: boolean;
 }
