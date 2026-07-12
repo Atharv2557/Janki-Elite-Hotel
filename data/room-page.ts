@@ -1,16 +1,16 @@
 export interface RoomGalleryImage {
-  id: number;
+ id: string | number;
   src: string;
   alt: string;
 }
 
 export interface RoomFeature {
-  id: number;
+ id: string | number;
   title: string;
 }
 
 export interface RoomPageItem {
-  id: number;
+ id: string | number;
   slug: string;
 
   title: string;
@@ -29,6 +29,12 @@ export interface RoomPageItem {
  featuresTitle: string;
 
   features: RoomFeature[];
+
+
+    complimentaryBreakfast?: boolean;
+     breakfastSelectionLimit?: number;
+     complimentaryLunchDinner?: boolean;
+
 }
 
 export const roomPageData: RoomPageItem[] = [
@@ -41,6 +47,12 @@ export const roomPageData: RoomPageItem[] = [
 
     subtitle: "Elegant Comfort",
 
+
+    
+  // complimentaryBreakfast: true,
+  // breakfastSelectionLimit: 1,
+   
+
     shortDescription:
       "Designed for travelers seeking comfort, warmth, and modern luxury.",
 
@@ -52,6 +64,7 @@ export const roomPageData: RoomPageItem[] = [
     heroImage: "/images/rooms/deluxe.jpg",
 
     coverImage: "/images/rooms/deluxe.jpg",
+    
 
     gallery: [
       {
@@ -103,14 +116,14 @@ export const roomPageData: RoomPageItem[] = [
         id: 6,
         title: "Room Service",
       },
-      {
-        id: 7,
-        title: "Tea & Coffee Station",
-      },
-      {
-        id: 8,
-        title: "Premium Toiletries",
-      },
+      // {
+      //   id: 7,
+      //    title: "Complimentary Breakfast",
+      // },
+      // {
+      //   id: 8,
+      //   title: "Premium Toiletries",
+      // },
     ],
   },
 
@@ -122,6 +135,13 @@ export const roomPageData: RoomPageItem[] = [
     title: "Premium Room",
 
     subtitle: "Luxury Living",
+
+
+  complimentaryBreakfast: true,
+  breakfastSelectionLimit: 2,
+
+  complimentaryLunchDinner: true,
+
 
     shortDescription:
       "A spacious premium room crafted with refined elegance and timeless interiors.",
@@ -164,10 +184,19 @@ export const roomPageData: RoomPageItem[] = [
       {
         id: 1,
         title: "King Size Bed",
-      },
+      },   
+
       {
         id: 2,
         title: "Smart TV",
+      },
+               {
+        id: 6,
+        title: "Complimentary Breakfast",
+      },
+       {
+        id: 7,
+        title: "Complimentary Lunch",
       },
       {
         id: 3,
@@ -181,14 +210,8 @@ export const roomPageData: RoomPageItem[] = [
         id: 5,
         title: "Free Wi-Fi",
       },
-      {
-        id: 6,
-        title: "Premium Workspace",
-      },
-      {
-        id: 7,
-        title: "Complimentary Breakfast",
-      },
+    
+
       {
         id: 8,
         title: "Room Service",
@@ -204,6 +227,13 @@ export const roomPageData: RoomPageItem[] = [
     title: "Family Suite",
 
     subtitle: "Space For Everyone",
+
+    
+  complimentaryBreakfast: true,
+
+  breakfastSelectionLimit: 3,
+
+  complimentaryLunchDinner: true,
 
     shortDescription:
       "An expansive suite thoughtfully designed for families and extended stays.",
@@ -251,7 +281,14 @@ export const roomPageData: RoomPageItem[] = [
         id: 2,
         title: "Living Area",
       },
-      
+           {
+        id: 7,
+        title: "Complimentary Breakfast",
+      },
+        {
+        id: 8,
+        title: "Complimentary Lunch",
+      },
       {
         id: 3,
         title: "Luxury Bathroom",
@@ -267,7 +304,8 @@ export const roomPageData: RoomPageItem[] = [
       {
         id: 6,
         title: "24×7 Room Service",
-      }
+      },
+  
     ],
   },
 ];

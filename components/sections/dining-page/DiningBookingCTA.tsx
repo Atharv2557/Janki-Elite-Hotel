@@ -51,17 +51,17 @@ export default function DiningBookingCTA() {
     <section
       id="dining-cta"
       ref={sectionRef}
-     className="relative overflow-hidden bg-[#fbf7f0] px-6 py-20 text-[#211711] md:px-12 md:py-24 lg:px-20 lg:py-10 bottom-5"
+      className="relative bottom-5 overflow-hidden bg-[#fbf7f0] px-6 py-20 text-[#211711] md:px-12 md:py-24 lg:px-20 lg:py-10"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(200,164,93,0.16),transparent_42%)]" />
 
       <div className="relative mx-auto max-w-7xl">
         <div
           ref={cardRef}
-          className="relative overflow-hidden rounded-[2.5rem] border border-[#eadfce] bg-[#211711] px-7 py-14 text-center text-white shadow-2xl shadow-[#211711]/15 md:px-14 md:py-20"
+          className="dining-premium-card group relative rounded-[2.5rem] border border-[#eadfce] bg-[#211711] px-7 py-14 text-center text-white shadow-2xl shadow-[#211711]/15 md:px-14 md:py-20"
         >
-          <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[#c8a45d]/20 blur-[90px]" />
-          <div className="pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-[#c8a45d]/15 blur-[90px]" />
+          <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[#c8a45d]/20 blur-[90px] transition-transform duration-[1500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-125" />
+          <div className="pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-[#c8a45d]/15 blur-[90px] transition-transform duration-[1500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-125" />
 
           <div className="relative mx-auto max-w-3xl">
             <p className="text-xs font-medium uppercase tracking-[0.45em] text-[#c8a45d]">
@@ -81,14 +81,14 @@ export default function DiningBookingCTA() {
                 href={whatsappLink}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full bg-[#c8a45d] px-8 py-4 text-sm font-semibold uppercase tracking-[0.22em] text-[#211711] transition duration-300 hover:bg-white"
+                className="dining-soft-button rounded-full bg-[#c8a45d] px-8 py-4 text-sm font-semibold uppercase tracking-[0.22em] text-[#211711] hover:bg-white"
               >
                 {cta.buttonText}
               </a>
 
               <a
                 href="/rooms"
-                className="rounded-full border border-white/20 px-8 py-4 text-sm font-semibold uppercase tracking-[0.22em] text-white transition duration-300 hover:border-[#c8a45d] hover:text-[#c8a45d]"
+                className="dining-soft-button rounded-full border border-white/20 px-8 py-4 text-sm font-semibold uppercase tracking-[0.22em] text-white hover:border-[#c8a45d] hover:text-[#c8a45d]"
               >
                 Explore Rooms
               </a>

@@ -35,3 +35,759 @@ a {
 img {
   max-width: 100%;
 }
+
+
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+
+@keyframes galleryReveal {
+  from {
+    opacity: 0;
+    transform: translateY(32px) scale(0.96);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.animate-galleryReveal {
+  animation: galleryReveal 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+@keyframes lightboxFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes lightboxZoom {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.animate-lightboxFade {
+  animation: lightboxFade 350ms ease forwards;
+}
+
+.animate-lightboxZoom {
+  animation: lightboxZoom 600ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.animate-heroEyebrow {
+  animation: heroFadeUp 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-heroTitle {
+  animation: heroFadeUp 1000ms cubic-bezier(0.22, 1, 0.36, 1) 900ms forwards;
+}
+
+.animate-heroText {
+  animation: heroFadeUp 1000ms cubic-bezier(0.22, 1, 0.36, 1) 1000ms forwards;
+}
+
+
+
+
+/* ---------------------------------------------------
+   PREMIUM GLOBAL IMAGE + CARD HOVER ANIMATIONS
+--------------------------------------------------- */
+
+.premium-image-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  background: #fff;
+  transform: translateY(0) scale(1);
+  transition:
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.premium-image-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.14);
+}
+
+.premium-image-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.premium-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transform: scale(1.01) translateY(0);
+  transition:
+    transform 1200ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1200ms ease;
+  will-change: transform;
+}
+
+.premium-image-card:hover .premium-image {
+  transform: scale(1.09) translateY(-10px);
+  filter: brightness(1.04) contrast(1.02);
+}
+
+/* Soft overlay for luxury feel */
+.premium-image-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.02),
+    rgba(0, 0, 0, 0.08)
+  );
+  opacity: 0;
+  transition: opacity 900ms ease;
+}
+
+.premium-image-card:hover .premium-image-wrap::after {
+  opacity: 1;
+}
+
+/* Prevent mobile weird hover */
+@media (hover: none) {
+  .premium-image-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .premium-image-card:hover .premium-image {
+    transform: scale(1.01);
+    filter: none;
+  }
+}
+
+
+
+
+/* Smooth premium hover for cards without images */
+.premium-soft-card {
+  border-radius: 30px;
+  transform: translateY(0) scale(1);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 950ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 950ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 950ms ease;
+  will-change: transform;
+}
+
+.premium-soft-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  background-color: #fff;
+  box-shadow: 0 28px 75px rgba(0, 0, 0, 0.1);
+}
+
+@media (hover: none) {
+  .premium-soft-card:hover {
+    transform: none;
+  }
+}
+
+
+
+
+/* ---------------------------------------------------
+   HOME PAGE PREMIUM SMOOTH HOVER / PARALLAX FEEL
+--------------------------------------------------- */
+
+.home-premium-card {
+  position: relative;
+  overflow: hidden;
+  transform: translateY(0) scale(1);
+  transition:
+    transform 1000ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 1000ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 1000ms ease,
+    background-color 1000ms ease;
+  will-change: transform;
+}
+
+.home-premium-card:hover {
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: 0 34px 90px rgba(0, 0, 0, 0.16);
+}
+
+.home-premium-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transform: scale(1.02) translateY(0);
+  transition:
+    transform 1800ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1800ms ease;
+  will-change: transform;
+}
+
+.home-premium-card:hover .home-premium-image {
+  transform: scale(1.12) translateY(-14px);
+  filter: brightness(1.05) contrast(1.04) saturate(1.04);
+}
+
+.home-premium-overlay {
+  opacity: 0.85;
+  transition: opacity 1000ms ease;
+}
+
+.home-premium-card:hover .home-premium-overlay {
+  opacity: 1;
+}
+
+.home-premium-icon {
+  transform: translateY(10px) scale(0.92);
+  opacity: 0;
+  transition:
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 900ms ease;
+}
+
+.home-premium-card:hover .home-premium-icon {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.home-premium-content {
+  transform: translateY(0);
+  transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.home-premium-card:hover .home-premium-content {
+  transform: translateY(-6px);
+}
+
+.home-soft-card {
+  position: relative;
+  overflow: hidden;
+  transform: translateY(0) scale(1);
+  transition:
+    transform 950ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 950ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 950ms ease,
+    border-color 950ms ease;
+  will-change: transform;
+}
+
+.home-soft-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  background-color: #fff;
+  border-color: rgba(176, 141, 87, 0.25);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.12);
+}
+
+.home-soft-glow {
+  transform: scale(1);
+  opacity: 0.65;
+  transition:
+    transform 1200ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 1200ms ease;
+}
+
+.home-soft-card:hover .home-soft-glow {
+  transform: scale(1.55);
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .home-premium-card:hover,
+  .home-soft-card:hover {
+    transform: none;
+    box-shadow: inherit;
+  }
+
+  .home-premium-card:hover .home-premium-image {
+    transform: scale(1.02);
+    filter: none;
+  }
+
+  .home-premium-card:hover .home-premium-content {
+    transform: none;
+  }
+}
+
+
+
+/* ---------------------------------------------------
+   ROOM PAGE PREMIUM SMOOTH HOVER / PARALLAX FEEL
+--------------------------------------------------- */
+
+.room-premium-card {
+  position: relative;
+  overflow: hidden;
+  transform: translateY(0) scale(1);
+  transition:
+    transform 1200ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 1200ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 1200ms ease,
+    background-color 1200ms ease;
+  will-change: transform;
+}
+
+.room-premium-card:hover {
+  transform: translateY(-12px) scale(1.01);
+  box-shadow: 0 42px 110px rgba(36, 26, 20, 0.24);
+}
+
+.room-premium-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transform: scale(1.03) translateY(0);
+  transition:
+    transform 2200ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 2200ms ease;
+  will-change: transform;
+}
+
+.room-premium-card:hover .room-premium-image {
+  transform: scale(1.13) translateY(-18px);
+  filter: brightness(1.05) contrast(1.04) saturate(1.05);
+}
+
+.room-premium-overlay {
+  opacity: 0.75;
+  transition: opacity 1200ms ease;
+}
+
+.room-premium-card:hover .room-premium-overlay {
+  opacity: 1;
+}
+
+.room-premium-label {
+  transform: translateY(0);
+  transition:
+    transform 1000ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 1000ms ease,
+    color 1000ms ease;
+}
+
+.room-premium-card:hover .room-premium-label {
+  transform: translateY(-8px);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.room-soft-button {
+  transition:
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 900ms ease,
+    border-color 900ms ease,
+    box-shadow 900ms ease,
+    color 900ms ease;
+}
+
+.room-soft-button:hover {
+  transform: translateY(-5px);
+}
+
+.room-mini-image {
+  transform: scale(1.02);
+  transition:
+    transform 1300ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1300ms ease,
+    opacity 1300ms ease;
+}
+
+.room-mini-thumb:hover .room-mini-image {
+  transform: scale(1.14) translateY(-5px);
+  filter: brightness(1.08) contrast(1.04);
+}
+
+.room-amenity-card {
+  transition:
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 900ms ease,
+    border-color 900ms ease,
+    box-shadow 900ms ease;
+}
+
+.room-amenity-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(212, 175, 55, 0.4);
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+}
+
+@media (hover: none) {
+  .room-premium-card:hover {
+    transform: none;
+  }
+
+  .room-premium-card:hover .room-premium-image {
+    transform: scale(1.03);
+    filter: none;
+  }
+
+  .room-premium-card:hover .room-premium-label {
+    transform: none;
+  }
+}
+
+
+
+
+/* ---------------------------------------------------
+   DINING PAGE PREMIUM SMOOTH HOVER / PARALLAX FEEL
+--------------------------------------------------- */
+
+.dining-premium-card {
+  position: relative;
+  overflow: hidden;
+  transform: translateY(0) scale(1);
+  transition:
+    transform 1200ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 1200ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 1200ms ease,
+    background-color 1200ms ease;
+  will-change: transform;
+}
+
+.dining-premium-card:hover {
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: 0 38px 100px rgba(33, 23, 17, 0.18);
+}
+
+.dining-premium-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transform: scale(1.03) translateY(0);
+  transition:
+    transform 2200ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 2200ms ease;
+  will-change: transform;
+}
+
+.dining-premium-card:hover .dining-premium-image {
+  transform: scale(1.13) translateY(-16px);
+  filter: brightness(1.06) contrast(1.04) saturate(1.06);
+}
+
+.dining-premium-overlay {
+  opacity: 0.72;
+  transition: opacity 1200ms ease;
+}
+
+.dining-premium-card:hover .dining-premium-overlay {
+  opacity: 0.95;
+}
+
+.dining-floating-content {
+  transform: translateY(12px);
+  opacity: 0;
+  transition:
+    transform 1000ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 1000ms ease;
+}
+
+.dining-premium-card:hover .dining-floating-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.dining-soft-card {
+  transition:
+    transform 1000ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 1000ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 1000ms ease,
+    background-color 1000ms ease;
+}
+
+.dining-soft-card:hover {
+  transform: translateY(-7px);
+  border-color: rgba(200, 164, 93, 0.55);
+  background-color: #ffffff;
+  box-shadow: 0 24px 70px rgba(33, 23, 17, 0.12);
+}
+
+.dining-soft-icon {
+  transition:
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 900ms ease,
+    color 900ms ease;
+}
+
+.dining-soft-card:hover .dining-soft-icon {
+  transform: scale(1.08);
+  background-color: #c8a45d;
+  color: #120c08;
+}
+
+.dining-soft-button {
+  transition:
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 900ms ease,
+    border-color 900ms ease,
+    color 900ms ease,
+    box-shadow 900ms ease;
+}
+
+.dining-soft-button:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 45px rgba(200, 164, 93, 0.18);
+}
+
+@media (hover: none) {
+  .dining-premium-card:hover,
+  .dining-soft-card:hover,
+  .dining-soft-button:hover {
+    transform: none;
+  }
+
+  .dining-premium-card:hover .dining-premium-image {
+    transform: scale(1.03);
+    filter: none;
+  }
+
+  .dining-premium-card:hover .dining-floating-content {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+}
+
+
+
+
+@keyframes complimentaryPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 rgba(212, 175, 55, 0),
+      inset 0 0 0 rgba(212, 175, 55, 0);
+  }
+
+  50% {
+    box-shadow:
+      0 0 24px rgba(212, 175, 55, 0.18),
+      inset 0 0 18px rgba(212, 175, 55, 0.06);
+  }
+}
+
+.complimentary-glow {
+  animation: complimentaryPulse 2.8s ease-in-out infinite;
+}
+
+.complimentary-glow:hover,
+.complimentary-glow:focus-visible {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .complimentary-glow {
+    animation: none;
+  }
+}
+
+
+
+@keyframes mealPanelEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.98);
+    filter: blur(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.meal-panel-enter {
+  animation: mealPanelEnter 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+
+@keyframes mealPlanOverlayEnter {
+  from {
+    opacity: 0;
+    transform: translateY(26px) scale(0.96);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.meal-plan-overlay-enter {
+  animation: mealPlanOverlayEnter 500ms
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .meal-plan-overlay-enter {
+    animation: none;
+  }
+}
+
+
+
+@keyframes mealCardGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 rgba(212, 175, 55, 0),
+      0 8px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  50% {
+    box-shadow:
+      0 0 28px rgba(212, 175, 55, 0.22),
+      0 12px 40px rgba(0, 0, 0, 0.14);
+  }
+}
+
+@keyframes mealCardShimmer {
+  0% {
+    transform: translateX(-130%);
+  }
+
+  100% {
+    transform: translateX(130%);
+  }
+}
+
+.meal-amenity-card {
+  animation: mealCardGlow 3s ease-in-out infinite;
+}
+
+.meal-amenity-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      110deg,
+      transparent 20%,
+      rgba(212, 175, 55, 0.06) 42%,
+      rgba(212, 175, 55, 0.14) 50%,
+      rgba(212, 175, 55, 0.06) 58%,
+      transparent 80%
+    );
+  transform: translateX(-130%);
+  animation: mealCardShimmer 4.5s ease-in-out infinite;
+}
+
+.meal-amenity-card:hover {
+  animation-play-state: paused;
+  border-color: rgba(212, 175, 55, 0.8);
+  box-shadow: 0 0 34px rgba(212, 175, 55, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .meal-amenity-card,
+  .meal-amenity-card::before {
+    animation: none;
+  }
+}
+
+
+@keyframes diningMenuEnter {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.985);
+    filter: blur(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.dining-menu-enter {
+  animation: diningMenuEnter 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dining-menu-enter {
+    animation: none;
+  }
+}
+
+
+
+
+
+
+@keyframes diningOverlayEnter {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.96);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.dining-overlay-enter {
+  animation: diningOverlayEnter 520ms
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dining-overlay-enter {
+    animation: none;
+  }
+}

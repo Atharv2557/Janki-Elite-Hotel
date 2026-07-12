@@ -12,10 +12,15 @@ import {
 
 import { RoomPageItem } from "@/data/room-page";
 import { Portal } from "@/components/ui/Portal";
+
 import { RoomGallery } from "./RoomGallery";
 import { RoomAmenities } from "./RoomAmenities";
 import { RoomCloseButton } from "./RoomCloseButton";
 import { RoomBookingPanel } from "./RoomBookingPanel";
+import {
+  MealPlanOverlay,
+  MealPlanType,
+} from "./MealPlanOverlay";
 
 type RoomDetailOverlayProps = {
   room: RoomPageItem | null;
@@ -29,6 +34,8 @@ export function RoomDetailOverlay({
   onClose,
 }: RoomDetailOverlayProps) {
   const [selectedImage, setSelectedImage] = useState("");
+  const [activeMealPlan, setActiveMealPlan] =
+    useState<MealPlanType | null>(null);
 
   const overlayRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -41,8 +48,16 @@ export function RoomDetailOverlay({
 
   useEffect(() => {
     if (!room) return;
+
     setSelectedImage(room.heroImage);
+    setActiveMealPlan(null);
   }, [room]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      setActiveMealPlan(null);
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -67,11 +82,21 @@ export function RoomDetailOverlay({
 
   const activeImage = room ? selectedImage || room.heroImage : "";
 
+  const handleMealPlanClick = useCallback((plan: MealPlanType) => {
+    setActiveMealPlan(plan);
+  }, []);
+
+  const handleMealPlanClose = useCallback(() => {
+    setActiveMealPlan(null);
+  }, []);
+
   const animateClose = useCallback(() => {
     if (isClosingRef.current) return;
 
     const overlay = overlayRef.current;
     const card = cardRef.current;
+
+    setActiveMealPlan(null);
 
     if (!overlay || !card) {
       onClose();
@@ -148,9 +173,14 @@ export function RoomDetailOverlay({
     if (!isOpen) return;
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        animateClose();
+      if (event.key !== "Escape") return;
+
+      if (activeMealPlan) {
+        setActiveMealPlan(null);
+        return;
       }
+
+      animateClose();
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -158,7 +188,7 @@ export function RoomDetailOverlay({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen, animateClose]);
+  }, [isOpen, activeMealPlan, animateClose]);
 
   useLayoutEffect(() => {
     if (!isOpen || !room) return;
@@ -170,17 +200,27 @@ export function RoomDetailOverlay({
     const overlay = overlayRef.current;
     const card = cardRef.current;
     const hero = heroRef.current;
-    const galleryItems = galleryRef.current?.querySelectorAll("button") ?? [];
+    const galleryItems =
+      galleryRef.current?.querySelectorAll("button") ?? [];
     const contentItems = contentRef.current?.children ?? [];
     const bookingPanels =
-      bookingAreaRef.current?.querySelectorAll("[data-booking-panel]") ?? [];
+      bookingAreaRef.current?.querySelectorAll(
+        "[data-booking-panel]"
+      ) ?? [];
 
     if (!overlay || !card) return;
 
     const ctx = gsap.context(() => {
       if (prefersReducedMotion) {
         gsap.set(
-          [overlay, card, hero, galleryItems, contentItems, bookingPanels],
+          [
+            overlay,
+            card,
+            hero,
+            galleryItems,
+            contentItems,
+            bookingPanels,
+          ],
           {
             opacity: 1,
             y: 0,
@@ -192,24 +232,25 @@ export function RoomDetailOverlay({
         return;
       }
 
-      const tl = gsap.timeline({
+      const timeline = gsap.timeline({
         defaults: {
           ease: "power3.out",
         },
       });
 
-      tl.fromTo(
-        overlay,
-        {
-          opacity: 0,
-          backdropFilter: "blur(0px)",
-        },
-        {
-          opacity: 1,
-          backdropFilter: "blur(10px)",
-          duration: 0.55,
-        }
-      )
+      timeline
+        .fromTo(
+          overlay,
+          {
+            opacity: 0,
+            backdropFilter: "blur(0px)",
+          },
+          {
+            opacity: 1,
+            backdropFilter: "blur(10px)",
+            duration: 0.55,
+          }
+        )
         .fromTo(
           card,
           {
@@ -343,6 +384,7 @@ export function RoomDetailOverlay({
                   <p className="text-[10px] uppercase tracking-[0.25em] text-white/45">
                     From
                   </p>
+
                   <p className="text-sm font-semibold text-[#d4af37]">
                     {room.price}
                   </p>
@@ -357,11 +399,11 @@ export function RoomDetailOverlay({
               ref={bookingAreaRef}
               className="grid max-h-[calc(100vh-96px)] min-w-0 gap-6 overflow-y-auto overflow-x-hidden p-4 sm:max-h-[calc(100vh-120px)] sm:p-6 lg:grid-cols-[minmax(0,410px)_minmax(0,1fr)] lg:gap-7 lg:p-7"
             >
-              {/* Left Column */}
+              {/* Left column */}
               <div className="min-w-0 space-y-4">
                 <div
                   ref={heroRef}
-                  className="group relative aspect-[5/4] overflow-hidden rounded-[20px] bg-black sm:aspect-[4/3] sm:rounded-[26px] lg:aspect-[4/3]"
+                  className="group room-premium-card relative aspect-[5/4] overflow-hidden rounded-[20px] bg-black sm:aspect-[4/3] sm:rounded-[26px]"
                 >
                   <Image
                     ref={heroImageRef}
@@ -371,7 +413,7 @@ export function RoomDetailOverlay({
                     fill
                     sizes="(max-width: 1024px) 100vw, 410px"
                     priority
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="room-premium-image object-cover"
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/15 to-transparent" />
@@ -383,7 +425,10 @@ export function RoomDetailOverlay({
                   </div>
                 </div>
 
-                <div ref={galleryRef} className="min-w-0 overflow-hidden">
+                <div
+                  ref={galleryRef}
+                  className="min-w-0 overflow-hidden"
+                >
                   <RoomGallery
                     images={room.gallery}
                     selectedImage={activeImage}
@@ -391,14 +436,22 @@ export function RoomDetailOverlay({
                   />
                 </div>
 
-                {/* Desktop/Laptop booking panel */}
-                <div data-booking-panel className="hidden lg:block">
-                  <RoomBookingPanel price={room.price} roomTitle={room.title} />
+                <div
+                  data-booking-panel
+                  className="hidden lg:block"
+                >
+                  <RoomBookingPanel
+                    price={room.price}
+                    roomTitle={room.title}
+                  />
                 </div>
               </div>
 
-              {/* Right Column */}
-              <div ref={contentRef} className="flex min-w-0 flex-col">
+              {/* Right column */}
+              <div
+                ref={contentRef}
+                className="flex min-w-0 flex-col"
+              >
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.35em] text-[#d4af37]">
                     Premium Suite
@@ -414,18 +467,32 @@ export function RoomDetailOverlay({
                     {room.description}
                   </p>
                 </div>
-               
-                
-                <RoomAmenities features={room.features} />
 
-                {/* Mobile/Tablet booking panel */}
-                <div data-booking-panel className="pt-6 sm:pt-8 lg:hidden">
-                  <RoomBookingPanel price={room.price} roomTitle={room.title} />
+                <RoomAmenities
+                  features={room.features}
+                  activeMealPlan={activeMealPlan}
+                  onMealPlanClick={handleMealPlanClick}
+                />
+
+                <div
+                  data-booking-panel
+                  className="pt-6 sm:pt-8 lg:hidden"
+                >
+                  <RoomBookingPanel
+                    price={room.price}
+                    roomTitle={room.title}
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        <MealPlanOverlay
+          activePlan={activeMealPlan}
+          roomTitle={room.title}
+          onClose={handleMealPlanClose}
+        />
       </div>
     </Portal>
   );

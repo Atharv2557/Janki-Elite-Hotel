@@ -69,9 +69,8 @@ export default function DiningGalleryReveal() {
   return (
     <section
       ref={sectionRef}
-     className="relative overflow-hidden bg-[#fbf7f0] px-6 py-20 text-[#211711] md:px-12 md:py-24 lg:px-20 lg:py-8"
+      className="relative overflow-hidden bg-[#fbf7f0] px-6 py-20 text-[#211711] md:px-12 md:py-24 lg:px-20 lg:py-8"
     >
-      {/* Background luxury texture */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(200,164,93,0.18),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(139,94,52,0.12),transparent_36%)]" />
 
       <div className="relative mx-auto max-w-7xl">
@@ -103,7 +102,7 @@ export default function DiningGalleryReveal() {
                 if (element) imageRefs.current[index] = element;
               }}
               className={[
-                "group relative overflow-hidden rounded-[2rem] border border-[#eadfce] bg-white shadow-sm",
+                "dining-premium-card group rounded-[2rem] border border-[#eadfce] bg-white shadow-sm",
                 index === 0
                   ? "md:col-span-7 md:h-[380px]"
                   : index === 1
@@ -116,20 +115,22 @@ export default function DiningGalleryReveal() {
                 src={image}
                 alt={`Dining gallery image ${index + 1}`}
                 fill
-                className="object-cover transition duration-700 group-hover:scale-110"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="dining-premium-image"
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent opacity-70 transition duration-500 group-hover:opacity-90" />
+              <div className="dining-premium-overlay absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
 
               <div className="absolute left-6 top-6 rounded-full border border-white/25 bg-black/25 px-4 py-2 text-xs uppercase tracking-[0.28em] text-white backdrop-blur-md">
                 0{index + 1}
               </div>
 
-              <div className="absolute bottom-6 left-6 right-6 translate-y-3 opacity-0 transition duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+              <div className="dining-floating-content absolute bottom-6 left-6 right-6">
                 <div className="rounded-2xl border border-white/15 bg-black/35 p-5 text-white backdrop-blur-md">
                   <p className="text-xs uppercase tracking-[0.35em] text-[#c8a45d]">
                     Janki Elite
                   </p>
+
                   <p className="mt-2 text-sm leading-6 text-white/75">
                     Fine dining ambience with a calm and premium hotel feel.
                   </p>

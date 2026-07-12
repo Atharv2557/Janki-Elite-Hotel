@@ -15,7 +15,7 @@ export function RoomGallery({
   onImageSelect,
 }: RoomGalleryProps) {
   return (
-   <div className="flex max-w-full gap-3 overflow-x-auto overflow-y-hidden pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <div className="flex max-w-full gap-3 overflow-x-auto overflow-y-hidden pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       {images.map((image) => {
         const active = selectedImage === image.src;
 
@@ -25,18 +25,21 @@ export function RoomGallery({
             type="button"
             onClick={() => onImageSelect(image.src)}
             className={`
+              room-mini-thumb
               relative
               h-20
               w-24
               shrink-0
               overflow-hidden
               rounded-2xl
+              border
               transition-all
-              duration-300
+              duration-[900ms]
+              ease-[cubic-bezier(0.22,1,0.36,1)]
               ${
                 active
-                  ? "ring-2 ring-[#d4af37] scale-105"
-                  : "opacity-70 hover:opacity-100 hover:scale-105"
+                  ? "scale-[1.04] border-[#d4af37] opacity-100 shadow-[0_14px_35px_rgba(212,175,55,0.22)]"
+                  : "border-white/10 opacity-70 hover:-translate-y-1 hover:border-[#d4af37]/50 hover:opacity-100"
               }
             `}
           >
@@ -44,7 +47,8 @@ export function RoomGallery({
               src={image.src}
               alt={image.alt}
               fill
-              className="object-cover"
+              sizes="96px"
+              className="room-mini-image object-cover"
             />
           </button>
         );

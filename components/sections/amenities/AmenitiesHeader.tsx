@@ -1,6 +1,6 @@
 import Badge from "@/components/ui/badge/Badge";
 import SectionHeading from "@/components/ui/heading/SectionHeading";
-import Reveal from "@/components/ui/reveal/Reveal";
+import {Reveal} from "@/components/ui/reveal/Reveal";
 
 export default function AmenitiesHeader() {
   return (

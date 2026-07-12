@@ -11,6 +11,15 @@ export default function NavCTA() {
       >
         Book Now
       </Button>
+
+        <Button
+        href="/login"
+        variant="primary"
+        className="px-6 py-3 text-xs uppercase tracking-[0.18em] ml-4"
+        showArrow={false}
+      >
+        LOGIN
+      </Button>
     </div>
   );
 }

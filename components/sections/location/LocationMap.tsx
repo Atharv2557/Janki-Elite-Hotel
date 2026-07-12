@@ -18,8 +18,9 @@ export default function LocationMap() {
 
       <div
         className="
+          group
+          home-soft-card
           relative
-          overflow-hidden
           rounded-[34px]
           border
           border-black/5
@@ -34,7 +35,15 @@ export default function LocationMap() {
             title="Janki Elite Hotel Location"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            className="h-full w-full border-0"
+            className="
+              h-full
+              w-full
+              border-0
+              transition-transform
+              duration-[1600ms]
+              ease-[cubic-bezier(0.22,1,0.36,1)]
+              group-hover:scale-[1.035]
+            "
           />
         </div>
 
@@ -52,6 +61,10 @@ export default function LocationMap() {
             text-white
             shadow-xl
             backdrop-blur-xl
+            transition-transform
+            duration-[1000ms]
+            ease-[cubic-bezier(0.22,1,0.36,1)]
+            group-hover:-translate-y-2
           "
         >
           <p className="text-xs font-semibold uppercase tracking-[0.26em] text-[var(--primary)]">

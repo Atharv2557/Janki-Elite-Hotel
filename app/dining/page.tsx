@@ -1,5 +1,5 @@
 import { Navbar } from "@/components/layout/navbar";
-import { DiningPageHero,  DiningExperience,   DiningMenuShowcase,   DiningGalleryReveal,
+import { DiningPageHero,  DiningExperience,    FeaturedDiningMenu,  DiningGalleryReveal,
     DiningBookingCTA,
 } from "@/components/sections/dining-page";
 
@@ -10,7 +10,10 @@ export default function DiningPage() {
          <Navbar />
       <DiningPageHero />
        <DiningExperience />
-       <DiningMenuShowcase/>
+       {/* <DiningMenuShowcase/> */}
+
+      <FeaturedDiningMenu />
+
        <DiningGalleryReveal/>
        <DiningBookingCTA/>
     </main>

@@ -49,9 +49,9 @@ export const diningPageData = {
   },
 
   gallery: [
-    "/images/dining/gallery.1.jpg",
+    "/images/dining/gallery.1.jpeg",
     "/images/dining/gallery-2.jpg",
-    "/images/dining/gallery-3.jpg",
+    "/images/dining/gallery-3.jpeg",
     "/images/dining/gallery-4.jpg",
   ],
 

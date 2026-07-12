@@ -17,8 +17,17 @@
 /.next/
 /out/
 
+
+# videos
+*.mp4
+*.MOV
+*.mov
+assets/video/
+public/videos/
+
 # production
 /build
+
 
 # misc
 .DS_Store

@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { Circle, MapPinned } from "lucide-react";
+import {  MapPinned } from "lucide-react";
+import { FaInstagram ,  FaFacebookF} from "react-icons/fa";
 
 import { footer } from "@/data/footer";
 
 const icons = {
-  Instagram : Circle,
-  Facebook :Circle,
+  Instagram : FaInstagram,
+  Facebook : FaFacebookF,
   "Google Maps": MapPinned,
 };
 

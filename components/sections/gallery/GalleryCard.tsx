@@ -17,18 +17,14 @@ export default function GalleryCard({ image }: GalleryCardProps) {
       variants={galleryCardReveal}
       className="
         group
+        home-premium-card
         relative
         h-[300px]
-        overflow-hidden
         rounded-[30px]
         border
         border-black/5
         bg-black
         shadow-[0_18px_50px_rgba(0,0,0,0.08)]
-        transition-all
-        duration-500
-        hover:-translate-y-2
-        hover:shadow-[0_30px_80px_rgba(0,0,0,0.14)]
         sm:h-[340px]
         lg:h-[380px]
       "
@@ -38,16 +34,10 @@ export default function GalleryCard({ image }: GalleryCardProps) {
         alt={image.alt}
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        className="
-          object-cover
-          transition-transform
-          duration-[1700ms]
-          ease-out
-          group-hover:scale-110
-        "
+        className="home-premium-image"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-90" />
+      <div className="home-premium-overlay absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
 
       <div
         className="
@@ -71,21 +61,10 @@ export default function GalleryCard({ image }: GalleryCardProps) {
         {image.category}
       </div>
 
-      <div
-        className="
-          absolute
-          inset-0
-          flex
-          items-center
-          justify-center
-          opacity-0
-          transition-opacity
-          duration-500
-          group-hover:opacity-100
-        "
-      >
-        <div
+      <div className="absolute inset-0 flex items-center justify-center">
+        {/* <div
           className="
+            home-premium-icon
             flex
             h-14
             w-14
@@ -93,17 +72,18 @@ export default function GalleryCard({ image }: GalleryCardProps) {
             justify-center
             rounded-full
             border
-            border-white/20
+            border-white/25
             bg-white/15
             text-white
+            shadow-[0_18px_50px_rgba(0,0,0,0.25)]
             backdrop-blur-xl
           "
         >
-          <Eye size={22} />
-        </div>
+          <Eye size={22}   />
+        </div> */}
       </div>
 
-      <div className="absolute bottom-5 left-5 right-5">
+      <div className="home-premium-content absolute bottom-5 left-5 right-5">
         <p className="text-sm font-medium uppercase tracking-[0.24em] text-white/70">
           Janki Elite
         </p>

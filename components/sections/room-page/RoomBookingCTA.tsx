@@ -7,7 +7,7 @@ export function RoomBookingCTA() {
       <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem]">
         <div className="relative min-h-130">
           <Image
-            src="/images/hero/room-hero.webp"
+            src="/images/hero/room-cta-main.jpg"
             alt="Premium hotel booking"
             fill
             className="object-cover"

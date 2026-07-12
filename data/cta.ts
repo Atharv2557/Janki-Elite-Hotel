@@ -16,6 +16,6 @@ export const cta = {
 
   whatsappButton: {
     text: "WhatsApp Inquiry",
-    href: "https://wa.me/919876543210?text=Hello%20Janki%20Elite%2C%20I%20would%20like%20to%20make%20a%20booking%20inquiry.",
+    href: "https://wa.me/919296909499?text=Hello%20Janki%20Elite%2C%20I%20would%20like%20to%20make%20a%20booking%20inquiry.",
   },
 };

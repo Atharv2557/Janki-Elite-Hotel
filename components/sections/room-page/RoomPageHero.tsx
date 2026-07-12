@@ -4,7 +4,7 @@ import { RoomReveal } from "./RoomReveal";
 
 export function RoomPageHero() {
   return (
-    <section className="relative min-h-[86vh] overflow-hidden">
+    <section className="relative min-h-[86vh] overflow-hidden py-5">
       <div className="absolute inset-0">
         <Image
           src="/images/about/about-main.jpg"

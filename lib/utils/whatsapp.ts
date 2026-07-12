@@ -1,4 +1,4 @@
-export const HOTEL_WHATSAPP_NUMBER = "919653730199";
+export const HOTEL_WHATSAPP_NUMBER = "919296909499";
 
 type CreateWhatsAppUrlParams = {
   roomTitle?: string;

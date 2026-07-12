@@ -28,13 +28,13 @@ export default function DiningPageHero() {
         .fromTo(
           imageRef.current,
           {
-            scale: 1.12,
+            scale: 1.14,
             opacity: 0,
           },
           {
             scale: 1,
             opacity: 1,
-            duration: 1.8,
+            duration: 1.9,
             ease: "power2.out",
           }
         )
@@ -54,7 +54,7 @@ export default function DiningPageHero() {
         .fromTo(
           titleRef.current,
           {
-            y: 42,
+            y: 44,
             opacity: 0,
             filter: "blur(10px)",
           },
@@ -115,27 +115,21 @@ export default function DiningPageHero() {
       ref={sectionRef}
       className="relative min-h-screen overflow-hidden bg-[#120c08] text-white"
     >
-      {/* Background Image */}
       <div ref={imageRef} className="absolute inset-0">
         <Image
           src={hero.image}
           alt={hero.title}
           fill
           priority
+          sizes="100vw"
           className="object-cover"
         />
 
-        {/* Luxury dark overlay */}
         <div className="absolute inset-0 bg-black/55" />
-
-        {/* Warm gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#120c08]/95 via-[#120c08]/60 to-transparent" />
-
-        {/* Bottom fade */}
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#120c08] to-transparent" />
       </div>
 
-      {/* Content */}
       <div className="relative z-10 flex min-h-screen items-center px-6 pt-28 md:px-12 lg:px-20">
         <div className="max-w-4xl">
           <p
@@ -147,7 +141,7 @@ export default function DiningPageHero() {
 
           <h1
             ref={titleRef}
-            className="max-w-5xl text-2xl font-semibold leading-[1.05] tracking-[-0.04em] md:text-8xl lg:text-7xl"
+            className="max-w-5xl text-5xl font-semibold leading-[1.05] tracking-[-0.04em] md:text-8xl lg:text-7xl"
           >
             {hero.title}
           </h1>
@@ -165,14 +159,14 @@ export default function DiningPageHero() {
           >
             <a
               href="#dining-menu"
-              className="rounded-full bg-[#c8a45d] px-7 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#120c08] transition duration-300 hover:bg-white"
+              className="dining-soft-button rounded-full bg-[#c8a45d] px-7 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#120c08] hover:bg-white"
             >
               Explore Menu
             </a>
 
             <a
               href="#dining-cta"
-              className="rounded-full border border-white/25 px-7 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white transition duration-300 hover:border-[#c8a45d] hover:text-[#c8a45d]"
+              className="dining-soft-button rounded-full border border-white/25 px-7 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white hover:border-[#c8a45d] hover:text-[#c8a45d]"
             >
               Reserve Table
             </a>
@@ -180,10 +174,9 @@ export default function DiningPageHero() {
         </div>
       </div>
 
-      {/* Small bottom label */}
       <div
         ref={labelRef}
-        className="absolute bottom-6 left-8 z-14 hidden items-center pt-4 gap-4 text-xs uppercase tracking-[0.35em] text-white/45 md:left-12 lg:left-20 lg:flex"
+        className="absolute bottom-6 left-8 z-10 hidden items-center gap-4 pt-4 text-xs uppercase tracking-[0.35em] text-white/45 md:left-12 lg:left-20 lg:flex"
       >
         <span className="h-px w-16 bg-white/30" />
         Fine Dining Experience
