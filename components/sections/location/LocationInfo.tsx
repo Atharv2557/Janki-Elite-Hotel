@@ -1,29 +1,60 @@
-import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+"use client";
 
-import { location } from "@/data/location";
+import Link from "next/link";
+import {
+  Mail,
+  MapPin,
+  Phone,
+} from "lucide-react";
+
+import { useContactSettings } from "@/components/providers/ContactSettingsProvider";
 
 export default function LocationInfo() {
+  const {
+    address,
+    primaryPhone,
+    secondaryPhone,
+    email,
+    mapUrl,
+  } = useContactSettings();
+
+  const primaryPhoneHref =
+    primaryPhone.replace(/[^\d+]/g, "");
+
+  const secondaryPhoneHref =
+    secondaryPhone.replace(/[^\d+]/g, "");
+
   const infoItems = [
     {
       icon: MapPin,
       label: "Address",
-      value: location.address,
-      href: location.button.href,
-      external: true,
+      value: address,
+      href: mapUrl || "#",
+      external: Boolean(mapUrl),
     },
     {
       icon: Phone,
       label: "Phone",
-      value: location.phone,
-      href: `tel:${location.phone.replace(/\s/g, "")}`,
+      value: primaryPhone,
+      href: `tel:${primaryPhoneHref}`,
       external: false,
     },
+    ...(secondaryPhone
+      ? [
+          {
+            icon: Phone,
+            label: "Alternate Phone",
+            value: secondaryPhone,
+            href: `tel:${secondaryPhoneHref}`,
+            external: false,
+          },
+        ]
+      : []),
     {
       icon: Mail,
       label: "Email",
-      value: location.email,
-      href: `mailto:${location.email}`,
+      value: email,
+      href: `mailto:${email}`,
       external: false,
     },
   ];
@@ -37,8 +68,16 @@ export default function LocationInfo() {
           <Link
             key={item.label}
             href={item.href}
-            target={item.external ? "_blank" : undefined}
-            rel={item.external ? "noopener noreferrer" : undefined}
+            target={
+              item.external
+                ? "_blank"
+                : undefined
+            }
+            rel={
+              item.external
+                ? "noopener noreferrer"
+                : undefined
+            }
             className="
               group
               flex
@@ -73,7 +112,10 @@ export default function LocationInfo() {
                 group-hover:text-white
               "
             >
-              <Icon size={22} strokeWidth={1.8} />
+              <Icon
+                size={22}
+                strokeWidth={1.8}
+              />
             </span>
 
             <span>

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 
 import Badge from "@/components/ui/badge/Badge";
 import Button from "@/components/ui/Button";
+import { useContactSettings } from "@/components/providers/ContactSettingsProvider";
 
 import { location } from "@/data/location";
 import {
@@ -14,6 +15,8 @@ import {
 import LocationInfo from "./LocationInfo";
 
 export default function LocationContent() {
+  const { mapUrl } = useContactSettings();
+
   return (
     <motion.div
       variants={locationContentContainer}
@@ -55,14 +58,19 @@ export default function LocationContent() {
         <LocationInfo />
       </motion.div>
 
-      <motion.div variants={locationFadeUp} className="mt-9">
-        <Button
-          href={location.button.href}
-          variant="dark"
+      {mapUrl && (
+        <motion.div
+          variants={locationFadeUp}
+          className="mt-9"
         >
-          {location.button.text}
-        </Button>
-      </motion.div>
+          <Button
+            href={mapUrl}
+            variant="dark"
+          >
+            {location.button.text}
+          </Button>
+        </motion.div>
+      )}
     </motion.div>
   );
 }

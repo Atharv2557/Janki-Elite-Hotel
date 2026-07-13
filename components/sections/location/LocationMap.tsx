@@ -2,16 +2,45 @@
 
 import { motion } from "framer-motion";
 
-import { location } from "@/data/location";
+import { useContactSettings } from "@/components/providers/ContactSettingsProvider";
 import { locationMapReveal } from "@/lib/animations/location";
 
+function createMapEmbedUrl(
+  mapUrl: string,
+  address: string
+) {
+  if (
+    mapUrl.includes("output=embed") ||
+    mapUrl.includes("/embed")
+  ) {
+    return mapUrl;
+  }
+
+  return `https://www.google.com/maps?q=${encodeURIComponent(
+    address
+  )}&output=embed`;
+}
+
 export default function LocationMap() {
+  const {
+    mapUrl,
+    address,
+  } = useContactSettings();
+
+  const mapEmbedUrl = createMapEmbedUrl(
+    mapUrl,
+    address
+  );
+
   return (
     <motion.div
       variants={locationMapReveal}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.25 }}
+      viewport={{
+        once: true,
+        amount: 0.25,
+      }}
       className="relative"
     >
       <div className="absolute -right-6 -top-6 hidden h-36 w-36 rounded-full bg-[var(--primary)]/15 blur-2xl sm:block" />
@@ -31,7 +60,7 @@ export default function LocationMap() {
       >
         <div className="relative h-[420px] overflow-hidden rounded-[26px] sm:h-[520px] lg:h-[620px]">
           <iframe
-            src={location.mapEmbedUrl}
+            src={mapEmbedUrl}
             title="Janki Elite Hotel Location"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
@@ -72,7 +101,8 @@ export default function LocationMap() {
           </p>
 
           <p className="mt-2 text-lg font-semibold leading-tight sm:text-xl">
-            Conveniently located for stays, events, and celebrations.
+            Conveniently located for stays,
+            events, and celebrations.
           </p>
         </div>
       </div>
