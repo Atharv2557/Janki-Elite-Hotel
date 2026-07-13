@@ -1,52 +1,42 @@
-import Link from "next/link";
-import { MessageCircle } from "lucide-react";
+"use client";
 
+import { useContactSettings } from "@/components/providers/ContactSettingsProvider";
+import { createWhatsAppUrl } from "@/lib/utils/whatsapp";
 import { cta } from "@/data/cta";
-import Button from "@/components/ui/Button";
 
-export default function CTAButtons() {
+export default function CTASection() {
+  const { whatsappNumber } =
+    useContactSettings();
+
+  const bookingUrl = createWhatsAppUrl({
+    whatsappNumber,
+    roomTitle: "Luxury Stay at Janki Elite",
+    intent: "book",
+  });
+
+  const inquiryUrl = createWhatsAppUrl({
+    whatsappNumber,
+    roomTitle: "Janki Elite Hotel",
+    intent: "inquiry",
+  });
+
   return (
-    <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:mt-10 sm:flex-row">
-      <Button
-        href={cta.primaryButton.href}
-        className="w-full sm:w-auto"
-      >
-        {cta.primaryButton.text}
-      </Button>
-
-      <Link
-        href={cta.whatsappButton.href}
+    <div>
+      <a
+        href={bookingUrl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Open WhatsApp inquiry for Janki Elite"
-        className="
-          inline-flex
-          w-full
-          items-center
-          justify-center
-          gap-2
-          rounded-full
-          border
-          border-white/25
-          px-8
-          py-4
-          text-sm
-          font-medium
-          text-white
-          transition-all
-          duration-500
-          hover:-translate-y-1
-          hover:bg-white
-          hover:text-black
-          focus:outline-none
-          focus:ring-2
-          focus:ring-white/50
-          sm:w-auto
-        "
       >
-        <MessageCircle size={18} />
+        {cta.primaryButton.text}
+      </a>
+
+      <a
+        href={inquiryUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         {cta.whatsappButton.text}
-      </Link>
+      </a>
     </div>
   );
 }

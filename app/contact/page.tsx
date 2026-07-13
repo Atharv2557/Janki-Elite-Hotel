@@ -80,11 +80,7 @@ export default async function ContactPage() {
           }
         />
 
-       <ContactFormSection
-  whatsappNumber={
-    settings.whatsapp_number
-  }
-/>
+       <ContactFormSection />
 
         <ContactMap />
       </main>

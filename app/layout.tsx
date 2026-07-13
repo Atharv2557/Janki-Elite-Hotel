@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import {
+  Cormorant_Garamond,
+  Inter,
+} from "next/font/google";
+
 import "./globals.css";
+
+import ContactSettingsProvider from "@/components/providers/ContactSettingsProvider";
+import { getContactSettings } from "@/lib/contact-settings/get-contact-settings";
 
 const headingFont = Cormorant_Garamond({
   subsets: ["latin"],
@@ -19,15 +26,24 @@ export const metadata: Metadata = {
   description: "Luxury Hotel in Jaipur",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const contactSettings =
+    await getContactSettings();
+
   return (
     <html lang="en">
-      <body className={`${headingFont.variable} ${bodyFont.variable}`}>
-        {children}
+      <body
+        className={`${headingFont.variable} ${bodyFont.variable}`}
+      >
+        <ContactSettingsProvider
+          settings={contactSettings}
+        >
+          {children}
+        </ContactSettingsProvider>
       </body>
     </html>
   );

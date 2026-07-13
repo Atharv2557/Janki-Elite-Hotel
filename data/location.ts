@@ -11,7 +11,7 @@ export const location = {
 
   address: "Janak puri 2nd, Plot no 37, Sirsi Rd, opposite 21 number bus stand, Prithviraj Nagar (B Sector), Jaipur, Rajasthan 302021",
   phone: "+91 98765 43210",
-  email: "info@jankielite.com",
+  email: "hoteljankielite@gmail.com",
 
   mapEmbedUrl:
      "https://www.google.com/maps?q=Janki%20Elite%20Hotel%20Jaipur%20Rajasthan%20India&output=embed",

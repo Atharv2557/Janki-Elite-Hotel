@@ -1,18 +1,23 @@
+"use client";
+
 import Link from "next/link";
-import { Reveal}  from "@/components/ui/reveal/Reveal";
+
+import { useContactSettings } from "@/components/providers/ContactSettingsProvider";
+import { Reveal } from "@/components/ui/reveal/Reveal";
 
 export function AmenitiesCTA() {
-  const phoneNumber = "919999999999";
+  const { whatsappNumber } =
+    useContactSettings();
 
   const message =
     "Hello Janki Elite, I want to know more about your hotel amenities.";
 
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     message
   )}`;
 
   return (
-    <section className="bg-white px-6 py-20 md:py-4  bg-[#fbf7f0]">
+    <section className="bg-[#fbf7f0] px-6 py-20 md:py-4">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <div className="overflow-hidden rounded-[2rem] bg-[#211711] px-6 py-14 text-center md:px-12 md:py-20">

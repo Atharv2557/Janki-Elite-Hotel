@@ -1,16 +1,46 @@
-import Link from "next/link";
-import {  MapPinned } from "lucide-react";
-import { FaInstagram ,  FaFacebookF} from "react-icons/fa";
+"use client";
 
+import Link from "next/link";
+import { MapPinned } from "lucide-react";
+import {
+  FaFacebookF,
+  FaInstagram,
+} from "react-icons/fa";
+
+import { useContactSettings } from "@/components/providers/ContactSettingsProvider";
 import { footer } from "@/data/footer";
+import { createWhatsAppUrl } from "@/lib/utils/whatsapp";
 
 const icons = {
-  Instagram : FaInstagram,
-  Facebook : FaFacebookF,
+  Instagram: FaInstagram,
+  Facebook: FaFacebookF,
   "Google Maps": MapPinned,
 };
 
 export default function FooterSocials() {
+  const {
+    whatsappNumber,
+    mapUrl,
+  } = useContactSettings();
+
+  const whatsappUrl = createWhatsAppUrl({
+    whatsappNumber,
+    roomTitle: "Janki Elite Hotel",
+    intent: "inquiry",
+  });
+
+  const socialLinks = [
+    ...footer.socials,
+    ...(mapUrl
+      ? [
+          {
+            label: "Google Maps",
+            href: mapUrl,
+          },
+        ]
+      : []),
+  ];
+
   return (
     <div>
       <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-[var(--primary)]">
@@ -18,8 +48,15 @@ export default function FooterSocials() {
       </h3>
 
       <div className="mt-6 flex gap-3">
-        {footer.socials.map((social) => {
-          const Icon = icons[social.label as keyof typeof icons];
+        {socialLinks.map((social) => {
+          const Icon =
+            icons[
+              social.label as keyof typeof icons
+            ];
+
+          if (!Icon) {
+            return null;
+          }
 
           return (
             <Link
@@ -53,7 +90,7 @@ export default function FooterSocials() {
       </div>
 
       <Link
-        href={footer.contact.whatsapp}
+        href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Open WhatsApp inquiry"

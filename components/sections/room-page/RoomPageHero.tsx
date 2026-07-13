@@ -1,8 +1,24 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+
+import { useContactSettings } from "@/components/providers/ContactSettingsProvider";
+import { createWhatsAppUrl } from "@/lib/utils/whatsapp";
+
 import { RoomReveal } from "./RoomReveal";
 
 export function RoomPageHero() {
+  const { whatsappNumber } =
+    useContactSettings();
+
+  const bookingUrl =
+    createWhatsAppUrl({
+      whatsappNumber,
+      roomTitle: "Hotel Room",
+      intent: "book",
+    });
+
   return (
     <section className="relative min-h-[86vh] overflow-hidden py-5">
       <div className="absolute inset-0">
@@ -13,7 +29,9 @@ export function RoomPageHero() {
           priority
           className="scale-105 object-cover"
         />
+
         <div className="absolute inset-0 bg-linear-to-r from-black/75 via-black/45 to-black/20" />
+
         <div className="absolute inset-0 bg-[#241a14]/20" />
       </div>
 
@@ -26,12 +44,16 @@ export function RoomPageHero() {
 
             <h1 className="max-w-4xl font-serif text-5xl font-light leading-[1.05] text-white sm:text-6xl lg:text-8xl">
               Quiet luxury,{" "}
-              <span className="italic text-[#d8b46a]">privately yours.</span>
+              <span className="italic text-[#d8b46a]">
+                privately yours.
+              </span>
             </h1>
 
             <p className="mt-7 max-w-2xl text-base leading-8 text-white/80 sm:text-lg">
-              Discover elegant rooms designed with warm textures, peaceful
-              comfort, thoughtful details, and a calm premium stay experience.
+              Discover elegant rooms designed
+              with warm textures, peaceful
+              comfort, thoughtful details, and
+              a calm premium stay experience.
             </p>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -43,7 +65,7 @@ export function RoomPageHero() {
               </Link>
 
               <a
-                href="https://wa.me/919999999999?text=Hello%20I%20want%20to%20book%20a%20room"
+                href={bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-full border border-white/35 px-8 py-4 text-xs font-bold uppercase tracking-[0.25em] text-white transition duration-300 hover:-translate-y-1 hover:border-[#d8b46a] hover:bg-white/10"

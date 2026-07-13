@@ -4,16 +4,28 @@ import { motion } from "framer-motion";
 
 import Badge from "@/components/ui/badge/Badge";
 import Button from "@/components/ui/Button";
+import { useContactSettings } from "@/components/providers/ContactSettingsProvider";
 
 import { dining } from "@/data/dining";
 import {
   diningContentContainer,
   diningFadeUp,
 } from "@/lib/animations/dining";
+import { createWhatsAppUrl } from "@/lib/utils/whatsapp";
 
 import DiningHighlights from "./DiningHighlights";
 
 export default function DiningContent() {
+  const { whatsappNumber } =
+    useContactSettings();
+
+  const diningInquiryUrl =
+    createWhatsAppUrl({
+      whatsappNumber,
+      roomTitle: "Dining Reservation",
+      intent: "inquiry",
+    });
+
   return (
     <motion.div
       variants={diningContentContainer}
@@ -56,8 +68,14 @@ export default function DiningContent() {
         <DiningHighlights />
       </motion.div>
 
-      <motion.div variants={diningFadeUp} className="mt-9">
-        <Button href={dining.button.href} variant="dark">
+      <motion.div
+        variants={diningFadeUp}
+        className="mt-9"
+      >
+        <Button
+          href={diningInquiryUrl}
+          variant="dark"
+        >
           {dining.button.text}
         </Button>
       </motion.div>

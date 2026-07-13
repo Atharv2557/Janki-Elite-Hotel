@@ -1,6 +1,8 @@
 "use client";
 
+import { useContactSettings } from "@/components/providers/ContactSettingsProvider";
 import { createWhatsAppUrl } from "@/lib/utils/whatsapp";
+
 
 type RoomBookingPanelProps = {
   price: string;
@@ -11,11 +13,17 @@ export function RoomBookingPanel({
   price,
   roomTitle = "Room",
 }: RoomBookingPanelProps) {
-  const whatsappUrl = createWhatsAppUrl({
-    roomTitle,
-    price,
-    intent: "book",
-  });
+
+
+ const { whatsappNumber } =
+  useContactSettings();
+
+const whatsappUrl = createWhatsAppUrl({
+  whatsappNumber,
+  roomTitle,
+  price,
+  intent: "inquiry",
+});
 
   return (
     <div

@@ -2,12 +2,17 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { motion, type Variants } from "framer-motion";
+import {
+  motion,
+  type Variants,
+} from "framer-motion";
 
-import { createWhatsAppUrl } from "@/lib/utils/whatsapp";
+import { useContactSettings } from "@/components/providers/ContactSettingsProvider";
 import type { RoomPageItem } from "@/data/room-page";
-import { RoomReveal } from "./RoomReveal";
+import { createWhatsAppUrl } from "@/lib/utils/whatsapp";
+
 import { RoomDetailOverlay } from "./RoomDetailOverlay";
+import { RoomReveal } from "./RoomReveal";
 
 type RoomShowcaseProps = {
   rooms: RoomPageItem[];
@@ -45,13 +50,18 @@ const roomContentItem: Variants = {
 export function RoomShowcase({
   rooms,
 }: RoomShowcaseProps) {
+  const { whatsappNumber } =
+    useContactSettings();
+
   const [selectedRoom, setSelectedRoom] =
     useState<RoomPageItem | null>(null);
 
   const [isOverlayOpen, setIsOverlayOpen] =
     useState(false);
 
-  function handleOpenRoom(room: RoomPageItem) {
+  function handleOpenRoom(
+    room: RoomPageItem
+  ) {
     setSelectedRoom(room);
     setIsOverlayOpen(true);
   }
@@ -85,9 +95,11 @@ export function RoomShowcase({
               </h2>
 
               <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#6f6257]">
-                Choose from thoughtfully designed rooms
-                with premium comfort, warm interiors and
-                a peaceful atmosphere made for relaxation.
+                Choose from thoughtfully
+                designed rooms with premium
+                comfort, warm interiors and a
+                peaceful atmosphere made for
+                relaxation.
               </p>
             </div>
           </RoomReveal>
@@ -99,18 +111,21 @@ export function RoomShowcase({
               </h3>
 
               <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-[#6f6257]">
-                Our room collection is currently being
-                updated. Please contact us for availability
-                and booking assistance.
+                Our room collection is currently
+                being updated. Please contact us
+                for availability and booking
+                assistance.
               </p>
             </div>
           ) : (
             <div className="space-y-24 lg:space-y-32">
               {rooms.map((room, index) => {
-                const isReverse = index % 2 === 1;
+                const isReverse =
+                  index % 2 === 1;
 
                 const bookingUrl =
                   createWhatsAppUrl({
+                    whatsappNumber,
                     roomTitle: room.title,
                     price: room.price,
                     intent: "book",
@@ -151,7 +166,9 @@ export function RoomShowcase({
                         "
                       >
                         <Image
-                          src={room.coverImage}
+                          src={
+                            room.coverImage
+                          }
                           alt={room.title}
                           fill
                           sizes="(max-width: 1024px) 100vw, 50vw"
@@ -191,64 +208,91 @@ export function RoomShowcase({
                         className="relative"
                       >
                         <motion.div
-                          variants={roomContentItem}
+                          variants={
+                            roomContentItem
+                          }
                           className="mb-6 h-px w-20 bg-[#9b7534]"
                         />
 
                         <motion.p
-                          variants={roomContentItem}
+                          variants={
+                            roomContentItem
+                          }
                           className="mb-4 text-xs font-semibold uppercase tracking-[0.4em] text-[#9b7534]"
                         >
                           {room.subtitle}
                         </motion.p>
 
                         <motion.h3
-                          variants={roomContentItem}
+                          variants={
+                            roomContentItem
+                          }
                           className="font-serif text-4xl font-light leading-tight text-[#241a14] sm:text-5xl"
                         >
                           {room.title}
                         </motion.h3>
 
                         <motion.p
-                          variants={roomContentItem}
+                          variants={
+                            roomContentItem
+                          }
                           className="mt-6 max-w-xl text-base leading-8 text-[#6f6257]"
                         >
-                          {room.shortDescription}
+                          {
+                            room.shortDescription
+                          }
                         </motion.p>
 
-                        {room.features.length > 0 && (
+                        {room.features.length >
+                          0 && (
                           <motion.div
-                            variants={roomContentItem}
+                            variants={
+                              roomContentItem
+                            }
                             className="mt-8 grid max-w-xl grid-cols-1 gap-x-8 gap-y-4 border-y border-[#241a14]/10 py-7 sm:grid-cols-2"
                           >
                             {room.features
                               .slice(0, 4)
-                              .map((feature) => (
-                                <div
-                                  key={feature.id}
-                                  className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#3b3028]"
-                                >
-                                  <span className="h-px w-5 bg-[#9b7534]" />
+                              .map(
+                                (
+                                  feature
+                                ) => (
+                                  <div
+                                    key={
+                                      feature.id
+                                    }
+                                    className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.22em] text-[#3b3028]"
+                                  >
+                                    <span className="h-px w-5 bg-[#9b7534]" />
 
-                                  {feature.title}
-                                </div>
-                              ))}
+                                    {
+                                      feature.title
+                                    }
+                                  </div>
+                                )
+                              )}
                           </motion.div>
                         )}
 
                         <motion.p
-                          variants={roomContentItem}
+                          variants={
+                            roomContentItem
+                          }
                           className="mt-7 text-sm font-semibold uppercase tracking-[0.25em] text-[#9b7534]"
                         >
                           {room.price}
                         </motion.p>
 
                         <motion.div
-                          variants={roomContentItem}
+                          variants={
+                            roomContentItem
+                          }
                           className="mt-8 flex flex-col gap-4 sm:flex-row"
                         >
                           <a
-                            href={bookingUrl}
+                            href={
+                              bookingUrl
+                            }
                             target="_blank"
                             rel="noopener noreferrer"
                             aria-label={`Book ${room.title} on WhatsApp`}
@@ -276,7 +320,9 @@ export function RoomShowcase({
                           <button
                             type="button"
                             onClick={() =>
-                              handleOpenRoom(room)
+                              handleOpenRoom(
+                                room
+                              )
                             }
                             className="
                               room-soft-button

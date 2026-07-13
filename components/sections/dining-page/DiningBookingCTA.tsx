@@ -1,8 +1,14 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+import { useContactSettings } from "@/components/providers/ContactSettingsProvider";
 import { diningPageData } from "@/data/dining-page";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -10,13 +16,28 @@ gsap.registerPlugin(ScrollTrigger);
 export default function DiningBookingCTA() {
   const { cta } = diningPageData;
 
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const cardRef = useRef<HTMLDivElement | null>(null);
+  const { whatsappNumber } =
+    useContactSettings();
+
+  const sectionRef =
+    useRef<HTMLElement | null>(null);
+
+  const cardRef =
+    useRef<HTMLDivElement | null>(null);
 
   const whatsappLink = useMemo(() => {
-    const message = encodeURIComponent(cta.whatsappMessage);
-    return `https://wa.me/${cta.whatsappNumber}?text=${message}`;
-  }, [cta.whatsappMessage, cta.whatsappNumber]);
+    const cleanNumber =
+      whatsappNumber.replace(/\D/g, "");
+
+    const message = encodeURIComponent(
+      cta.whatsappMessage
+    );
+
+    return `https://wa.me/${cleanNumber}?text=${message}`;
+  }, [
+    cta.whatsappMessage,
+    whatsappNumber,
+  ]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -61,6 +82,7 @@ export default function DiningBookingCTA() {
           className="dining-premium-card group relative rounded-[2.5rem] border border-[#eadfce] bg-[#211711] px-7 py-14 text-center text-white shadow-2xl shadow-[#211711]/15 md:px-14 md:py-20"
         >
           <div className="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[#c8a45d]/20 blur-[90px] transition-transform duration-[1500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-125" />
+
           <div className="pointer-events-none absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-[#c8a45d]/15 blur-[90px] transition-transform duration-[1500ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-125" />
 
           <div className="relative mx-auto max-w-3xl">
@@ -80,7 +102,7 @@ export default function DiningBookingCTA() {
               <a
                 href={whatsappLink}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="dining-soft-button rounded-full bg-[#c8a45d] px-8 py-4 text-sm font-semibold uppercase tracking-[0.22em] text-[#211711] hover:bg-white"
               >
                 {cta.buttonText}

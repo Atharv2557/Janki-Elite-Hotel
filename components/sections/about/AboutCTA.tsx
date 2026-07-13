@@ -1,16 +1,21 @@
+"use client";
+
 import Link from "next/link";
-import {Reveal} from "@/components/ui/reveal/Reveal";
 
-const whatsappNumber = "919999999999";
-
-const whatsappMessage =
-  "Hello Janki Elite, I want to know more about your hotel and room availability.";
-
-const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-  whatsappMessage
-)}`;
+import { useContactSettings } from "@/components/providers/ContactSettingsProvider";
+import { Reveal } from "@/components/ui/reveal/Reveal";
 
 export function AboutCTA() {
+  const { whatsappNumber } =
+    useContactSettings();
+
+  const whatsappMessage =
+    "Hello Janki Elite, I want to know more about your hotel and room availability.";
+
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    whatsappMessage
+  )}`;
+
   return (
     <section className="bg-white px-6 py-20 md:py-10">
       <Reveal>

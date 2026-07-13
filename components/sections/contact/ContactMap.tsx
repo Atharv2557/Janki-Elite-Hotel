@@ -25,7 +25,7 @@ export default function ContactMap() {
           <div className="overflow-hidden rounded-[2rem] border border-black/10 bg-white shadow-sm">
             <iframe
               title="Janki Elite Hotel Location"
-              src="https://www.google.com/maps?q=Jaipur%20Rajasthan&output=embed"
+              src="https://www.google.com/maps?q=Janki%20Elite%20Hotel%20Jaipur%20Rajasthan%20India&output=embed"
               className="h-[420px] w-full border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

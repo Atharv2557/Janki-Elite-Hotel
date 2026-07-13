@@ -1,9 +1,14 @@
 "use client";
 
 import { createWhatsAppUrl } from "@/lib/utils/whatsapp";
+import { useContactSettings } from "@/components/providers/ContactSettingsProvider";
 
 export function FloatingWhatsAppCTA() {
+  const { whatsappNumber } =
+    useContactSettings();
+
   const whatsappUrl = createWhatsAppUrl({
+    whatsappNumber,
     roomTitle: "Rooms",
     intent: "inquiry",
   });

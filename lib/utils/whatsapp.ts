@@ -1,12 +1,12 @@
-export const HOTEL_WHATSAPP_NUMBER = "919296909499";
-
 type CreateWhatsAppUrlParams = {
+  whatsappNumber: string;
   roomTitle?: string;
   price?: string;
   intent?: "book" | "inquiry" | "details";
 };
 
 export function createWhatsAppUrl({
+  whatsappNumber,
   roomTitle = "Room",
   price,
   intent = "inquiry",
@@ -25,7 +25,12 @@ export function createWhatsAppUrl({
     }`,
   };
 
-  const message = encodeURIComponent(messages[intent]);
+  const cleanNumber =
+    whatsappNumber.replace(/\D/g, "");
 
-  return `https://wa.me/${HOTEL_WHATSAPP_NUMBER}?text=${message}`;
+  const message = encodeURIComponent(
+    messages[intent]
+  );
+
+  return `https://wa.me/${cleanNumber}?text=${message}`;
 }

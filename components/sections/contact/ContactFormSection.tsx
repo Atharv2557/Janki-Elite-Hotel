@@ -1,5 +1,7 @@
 "use client";
 
+import { useContactSettings } from "@/components/providers/ContactSettingsProvider";
+
 import {
   type ChangeEvent,
   type FormEvent,
@@ -19,9 +21,6 @@ import {
   type ContactInquiryFormValues,
 } from "@/lib/validations/contact";
 
-type ContactFormSectionProps = {
-  whatsappNumber?: string;
-};
 
 type ContactFieldErrors = Partial<
   Record<keyof ContactInquiryFormValues, string>
@@ -34,10 +33,11 @@ const initialFormData: ContactInquiryFormValues = {
   subject: "",
   message: "",
 };
+export default function ContactFormSection() {
+  const { whatsappNumber } =
+    useContactSettings();
 
-export default function ContactFormSection({
-  whatsappNumber = "919653730199",
-}: ContactFormSectionProps) {
+    
   const [formData, setFormData] =
     useState<ContactInquiryFormValues>(
       initialFormData
