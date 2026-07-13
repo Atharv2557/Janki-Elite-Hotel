@@ -35,7 +35,7 @@ export const footer = {
   socials: [
     {
       label: "Instagram",
-      href: "https://www.instagram.com/",
+      href: "https://www.instagram.com/hoteljankielite?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==",
     },
     {
       label: "Facebook",
