@@ -22,8 +22,42 @@ const bodyFont = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Janki Elite",
-  description: "Luxury Hotel in Jaipur",
+  metadataBase: new URL("https://www.hoteljankielite.com"),
+
+  title: {
+    default: "Janki Elite Hotel Jaipur | Luxury Rooms & Fine Dining",
+    template: "%s | Janki Elite Hotel Jaipur",
+  },
+
+  description:
+    "Experience comfortable rooms, fine dining and warm hospitality at Janki Elite Hotel in Jaipur. Explore rooms, amenities and contact us for bookings.",
+
+  applicationName: "Janki Elite Hotel",
+
+  authors: [
+    {
+      name: "Janki Elite Hotel",
+    },
+  ],
+
+  creator: "Janki Elite Hotel",
+  publisher: "Janki Elite Hotel",
+
+  alternates: {
+    canonical: "/",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default async function RootLayout({
