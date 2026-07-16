@@ -9,6 +9,8 @@ import "./globals.css";
 import ContactSettingsProvider from "@/components/providers/ContactSettingsProvider";
 import { getContactSettings } from "@/lib/contact-settings/get-contact-settings";
 
+import { Analytics } from "@vercel/analytics/next";
+
 const headingFont = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-heading",
@@ -78,6 +80,7 @@ export default async function RootLayout({
         >
           {children}
         </ContactSettingsProvider>
+          <Analytics />
       </body>
     </html>
   );
