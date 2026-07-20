@@ -16,7 +16,7 @@ export const luxuryIntro = {
 
   stats: [
     {
-      value: "50+",
+      value: "20+",
       label: "Luxury Rooms",
     },
     {

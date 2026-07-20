@@ -2,7 +2,7 @@ import { Reveal } from "@/components/ui";
 
 const stats = [
   {
-    value: "25+",
+    value: "20+",
     label: "Elegant Rooms",
     description: "Designed for peaceful and comfortable stays.",
   },
