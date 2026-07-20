@@ -10,7 +10,7 @@ import {
 
 export default function HeroFeatures() {
   return (
-    <div className="absolute bottom-0 left-0 z-30 w-full px-4 pb-5">
+    <div className="absolute bottom-0 left-0 z-30 hidden w-full px-8 pb-5 lg:block">
       <motion.div
         variants={heroFeaturesContainer}
         initial="hidden"
@@ -19,20 +19,17 @@ export default function HeroFeatures() {
           mx-auto
           flex
           max-w-7xl
-          flex-wrap
           items-center
-          justify-center
-          gap-3
+          justify-between
+          gap-4
           rounded-full
           border
           border-white/15
           bg-white/10
-          px-5
+          px-8
           py-4
           text-center
           backdrop-blur-xl
-          md:justify-between
-          md:px-8
         "
       >
         {heroContent.features.map((feature) => (
